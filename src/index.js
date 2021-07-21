@@ -61,9 +61,9 @@ class Vector {
   equals(b) {
     if (this.errorLogger(b)) {
       for (let i = 0; i < this.components.length; i++) {
-        const result =
-          this.components[i] === b.components[i] ? "equal" : "not the same";
-        return result;
+        return this.components[i] === b.components[i]
+          ? "equal"
+          : "not the same";
       }
     }
   }
