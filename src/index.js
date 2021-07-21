@@ -11,6 +11,12 @@ class Vector {
     }
   }
 
+  reduce(value) {
+    return value.reduce(function (acc, val) {
+      return acc + val;
+    }, 0);
+  }
+
   add(b) {
     if (this.errorLogger(b)) {
       let arr = [];
@@ -37,11 +43,7 @@ class Vector {
       for (let i = 0; i < this.components.length; i++) {
         arr.push(this.components[i] * b.components[i]);
       }
-
-      const dotSum = arr.reduce(function (acc, val) {
-        return acc + val;
-      }, 0);
-      return dotSum;
+      return this.reduce(arr);
     }
   }
 
@@ -49,10 +51,7 @@ class Vector {
     const doubles = this.components.map(function (num) {
       return num ** 2;
     });
-    const doublesSum = doubles.reduce(function (acc, val) {
-      return acc + val;
-    }, 0);
-    return doublesSum;
+    return this.reduce(doubles);
   }
 
   toString() {
@@ -73,11 +72,11 @@ class Vector {
 var a = new Vector([1, 2, 3]);
 var b = new Vector([3, 4, 5]);
 var d = new Vector([1, 4, 5]);
-console.log(a.add(b)); //	should return	a	new	Vector([4,	6,	8])
+console.log(a.add(b)); //	[4, 6, 8])
 console.log(a.add(d));
-console.log(a.subtract(b)); //	should	return	a	new	Vector([-2,	-2,	-2])
-console.log(a.dot(b)); //	should	return	1*3	+	2*4	+	3*5	=	26
-console.log(a.norm()); //	should	return	sqrt(1^2	+	2^2	+	3^2)	=	sqrt(14)
+console.log(a.subtract(b)); // [-2,	-2,	-2])
+console.log(a.dot(b)); // 1*3	+	2*4	+	3*5	=	26
+console.log(a.norm()); // sqrt(1^2	+	2^2	+	3^2) =	sqrt(14)
 
 var c = new Vector([5, 6, 7, 8]);
 console.log("diff length", a.add(c));
